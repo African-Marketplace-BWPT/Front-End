@@ -13,9 +13,6 @@ const Styledbutton = styled.a`
   padding: 2%;
   border-radius: 8px;
   text-decoration: none;
-  &a:visited {
-    color: white;
-  }
   &:hover {
     color: #f07736;
   }

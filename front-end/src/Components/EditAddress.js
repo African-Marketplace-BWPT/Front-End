@@ -27,14 +27,25 @@ const StyledButton = styled.button`
   border: 2px solid #f07736;
   border-radius: 5px;
   transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+`;
 
-  &:focus {
-    border: 2px solid white;
-  }
+const StyledLink = styled.div`
+  text-decoration: none;
+  color: white;
+  letter-spacing: 0.3rem;
+  padding: 0.4rem 2rem;
+  font-size: 1.2rem;
+  background-color: #f07736;
+  border: 2px solid #f07736;
+  border-radius: 5px;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 
-  &:hover {
-    background-color: white;
-    color: #f07736;
+  a {
+    text-decoration: none;
+
+    &:visited {
+      color: white;
+    }
   }
 `;
 
@@ -57,7 +68,9 @@ const EditAddress = () => {
         <input placeholder="City" />
       </StyledForm>
       <Bottom>
-        <a href="/dashboard">Back to Dashboard</a>
+        <StyledLink>
+          <a href="/dashboard">DASHBOARD</a>
+        </StyledLink>
         <StyledButton type="submit">UPDATE</StyledButton>
       </Bottom>
     </div>

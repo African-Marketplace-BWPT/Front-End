@@ -11,7 +11,6 @@ const MainContainer = styled.div`
 
 const Styledbutton = styled.a`
   padding: 2%;
-  border-radius: 8px;
   text-decoration: none;
   &:hover {
     color: #f07736;

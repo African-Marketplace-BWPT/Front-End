@@ -96,10 +96,10 @@ const SignUp = ({ register, isAuthenticated }) => {
           )}
         </label>
         <button type='submit' data-cy='submit-button' disabled={isDisabled}>
-          Register
+          Sign Up
         </button>
         <div>Or</div>
-        <Link to='/'>
+        <Link to='/signIn'>
           <button type='submit' data-cy='submit-button'>
             Sign In
           </button>

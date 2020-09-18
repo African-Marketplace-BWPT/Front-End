@@ -9,15 +9,15 @@ const MainContainer = styled.div`
   color: #2b2c2d;
 `;
 
-const Styledbutton = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 5%;
+const Styledbutton = styled.a`
+  padding: 2%;
   border-radius: 8px;
-  background-color: #f07736;
+  text-decoration: none;
+  &a:visited {
+    color: white;
+  }
   &:hover {
-    background-color: white;
+    color: #f07736;
   }
 `;
 
@@ -27,19 +27,19 @@ const Dashboard = () => {
       <Navbar />
       <MainContainer>
         <div className="leftContainer">
-          <h2>Welcome back, Insert Username Here</h2>
           <h3>My Account</h3>
+          <h2>Welcome back, Insert Username Here</h2>
+          <Styledbutton href="/myListing">My Listings</Styledbutton>
         </div>
 
         <div className="userInfo">
+          <p>Address:</p>
           <p>Name</p>
           <p>Street Address</p>
           <p>Apt/Suite</p>
           <p>Zip Code</p>
           <p>City</p>
-          <Styledbutton>
-            <a href="/editAddress">Edit Address</a>
-          </Styledbutton>
+          <Styledbutton href="/editAddress">Edit Address</Styledbutton>
         </div>
       </MainContainer>
     </div>

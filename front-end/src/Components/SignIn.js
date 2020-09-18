@@ -103,9 +103,9 @@ const SignIn = ({ login, isAuthenticated }) =>{
           Sign In
         </button>
         <div>Or</div>
-        <Link to='/register'>
+        <Link to='/'>
           <button type='submit' data-cy='submit-button'>
-            Register
+            Sign Up
           </button>
         </Link>
       </form>

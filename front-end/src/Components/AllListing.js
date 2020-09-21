@@ -1,6 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import Navbar from '../Components/Navbar';
+import ItemCardAllListing from './ItemCardAllListing';
+
+import {Container} from 'reactstrap';
 
 
 const AllListing = () => {
@@ -8,10 +11,16 @@ const AllListing = () => {
         <div>
             <h1>AllListing</h1>
             <Navbar/>
-            <Link to='/itemCard'>View Card</Link>
+            <Container className='container'>
+                <ItemCardAllListing className='card'></ItemCardAllListing>
+            </Container>
+            
             
         </div>
     )
 };
 
 export default AllListing;
+
+
+

@@ -9,6 +9,7 @@ const Navbar = () => {
             </Logo>
             <ButtonContainer>
                 
+                <Buttons href='http://localhost:3000/dashboard'>Dashboard</Buttons>
                 <Buttons href='http://localhost:3000/allListing'>All Listing</Buttons>
                 <Buttons href='http://localhost:3000/myListing'>My Listing</Buttons>
                 <Buttons href='http://localhost:3000/cart'>Cart</Buttons>
@@ -24,7 +25,6 @@ export default Navbar;
 
 const NavbarContainer = styled.div`
     margin: 10px 10% 10px 10%;
-   
     padding: 2px;
     display: flex;
     flex-direction: column;
@@ -44,7 +44,6 @@ const ButtonContainer = styled.div`
     display: flex;
     justify-content: space-between;
     margin-right: 65%;
-    
     font-family: Poppin;
     margin-bottom: 3px;
 `

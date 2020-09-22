@@ -17,19 +17,22 @@ const Styledbutton = styled.a`
   }
 `;
 
+const Title = styled.h2`
+  color: #f07736;
+`;
+
 const Dashboard = () => {
   return (
     <div>
       <Navbar />
       <MainContainer>
         <div className="leftContainer">
-          <h3>My Account</h3>
-          <h2>Welcome back, Insert Username Here</h2>
+          <Title>Welcome back, Insert Username Here</Title>
           <Styledbutton href="/myListing">My Listings</Styledbutton>
         </div>
 
         <div className="userInfo">
-          <p>Address:</p>
+          <Title>Address:</Title>
           <p>Name</p>
           <p>Street Address</p>
           <p>Apt/Suite</p>

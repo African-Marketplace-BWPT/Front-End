@@ -49,6 +49,12 @@ const StyledLink = styled.div`
   }
 `;
 
+const StyledInput = styled.input`
+  border-radius: 5px;
+  border: 2px #f07736 solid;
+  padding: 0.5%;
+`;
+
 const Bottom = styled.div`
   display: flex;
   justify-content: space-evenly;
@@ -60,12 +66,12 @@ const EditAddress = () => {
       <Navbar />
       <StyledForm>
         <Title>Edit Your Address</Title>
-        <input placeholder="Country" />
-        <input placeholder="Full Name" />
-        <input placeholder="Street Address" />
-        <input placeholder="Apt/Suite" />
-        <input placeholder="Zip Code" />
-        <input placeholder="City" />
+        <StyledInput placeholder="Country" />
+        <StyledInput placeholder="Full Name" />
+        <StyledInput placeholder="Street Address" />
+        <StyledInput placeholder="Apt/Suite" />
+        <StyledInput placeholder="Zip Code" />
+        <StyledInput placeholder="City" />
       </StyledForm>
       <Bottom>
         <StyledLink>

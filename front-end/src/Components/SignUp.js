@@ -68,7 +68,7 @@ const SignUp = ({ register, isAuthenticated }) => {
             <p>Here is the SignUp</p>
             <Link to='/signIn'>Sign In</Link>
         <Container>
-            <form className='formContainer'>
+            <form onClick={handleSubmit} className='formContainer'>
         <label>
           <input
             type='email'
@@ -95,7 +95,7 @@ const SignUp = ({ register, isAuthenticated }) => {
             <p style={{ color: "red" }}>{errors.password}</p>
           )}
         </label>
-        <button type='submit' data-cy='submit-button' disabled={isDisabled}>
+        <button onClick={handleSubmit} type='submit' data-cy='submit-button' disabled={isDisabled}>
           Sign Up
         </button>
         <div>Or</div>

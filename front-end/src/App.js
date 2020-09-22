@@ -36,15 +36,15 @@ function App() {
           <Route exact path='/' component={SignUp}/>
           <Route exact path='/signIn' component={SignIn}/>
           
-          <PrivateRoute exact path='/dashboard' component={Dashboard}/>
-          <PrivateRoute exact path='/editAddress' component={EditAddress}/>
-          <PrivateRoute exact path='/myListing' component={MyListing} itemCard={ItemCard}/>
-          <PrivateRoute exact path='/createListing' component={CreateListing}/>
-          <PrivateRoute exact path='/editMyListing' component={EditMyListing}/>
-          <PrivateRoute exact path='/allListing' component={AllListing} itemCard={ItemCard}/>
-          <PrivateRoute exact path='/itemCard' component={ItemCard}/>
-          <PrivateRoute exact path='/cart' component={Cart}/>
-          <PrivateRoute exact path='/checkout' component={Checkout}/>
+          <Route exact path='/dashboard' component={Dashboard}/>
+          <Route exact path='/editAddress' component={EditAddress}/>
+          <Route exact path='/myListing' component={MyListing} itemCard={ItemCard}/>
+          <Route exact path='/createListing' component={CreateListing}/>
+          <Route exact path='/editMyListing' component={EditMyListing}/>
+          <Route exact path='/allListing' component={AllListing} itemCard={ItemCard}/>
+          <Route exact path='/itemCard' component={ItemCard}/>
+          <Route exact path='/cart' component={Cart}/>
+          <Route exact path='/checkout' component={Checkout}/>
 
         </Switch>
       </Router>

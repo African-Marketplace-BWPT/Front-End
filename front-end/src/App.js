@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {Provider} from 'react-redux';
 
@@ -14,10 +14,21 @@ import EditAddress from './Components/EditAddress';
 import CreateListing from './Components/CreateListing';
 import EditMyListing from './Components/EditMyListing';
 import ItemCard from './Components/ItemCardMyListing';
+import setAuthToken from './utils/setAuthToken';
+import PrivateRoute from './Components/routing/PrivateRoute';
 
 import store from './Store';
 
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
+
 function App() {
+
+  useEffect(() => {
+    setAuthToken(localStorage.token);
+  }, []);
+
   return (
     <Provider store={store}>
       <Router>
@@ -25,15 +36,15 @@ function App() {
           <Route exact path='/' component={SignUp}/>
           <Route exact path='/signIn' component={SignIn}/>
           
-          <Route exact path='/dashboard' component={Dashboard}/>
-          <Route exact path='/editAddress' component={EditAddress}/>
-          <Route exact path='/myListing' component={MyListing} itemCard={ItemCard}/>
-          <Route exact path='/createListing' component={CreateListing}/>
-          <Route exact path='/editMyListing' component={EditMyListing}/>
-          <Route exact path='/allListing' component={AllListing} itemCard={ItemCard}/>
-          <Route exact path='/itemCard' component={ItemCard}/>
-          <Route exact path='/cart' component={Cart}/>
-          <Route exact path='/checkout' component={Checkout}/>
+          <PrivateRoute exact path='/dashboard' component={Dashboard}/>
+          <PrivateRoute exact path='/editAddress' component={EditAddress}/>
+          <PrivateRoute exact path='/myListing' component={MyListing} itemCard={ItemCard}/>
+          <PrivateRoute exact path='/createListing' component={CreateListing}/>
+          <PrivateRoute exact path='/editMyListing' component={EditMyListing}/>
+          <PrivateRoute exact path='/allListing' component={AllListing} itemCard={ItemCard}/>
+          <PrivateRoute exact path='/itemCard' component={ItemCard}/>
+          <PrivateRoute exact path='/cart' component={Cart}/>
+          <PrivateRoute exact path='/checkout' component={Checkout}/>
 
         </Switch>
       </Router>

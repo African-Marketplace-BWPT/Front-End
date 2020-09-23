@@ -1,17 +1,21 @@
 import React, { useState, useEffect }  from 'react';
+import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import * as yup from "yup";
 import styled from 'styled-components';
+import {Redirect} from 'react-router-dom';
+import {register} from '../actions/auth';
+
 
 const defaultErrorState = {
-    email: "",
+  username: "",
     password: "",
   };
   
   const schema = yup.object().shape({
-    email: yup
+    username: yup
       .string()
-      .email("This is not a valid email.")
+      
       .required("Please enter you email."),
     password: yup
       .string()
@@ -19,17 +23,17 @@ const defaultErrorState = {
       .min(6, "Requires a min of 6 symbols."),
   });
 
-const SignUp = ({ register, isAuthenticated }) => {
+const SignUp = ({register, isAuthenticated }) => {
 
     const [formState, setFormState] = useState({
-        email: "",
+        username: "",
         password: "",
       });
       const [errors, setErrors] = useState(defaultErrorState);
       const [isDisabled, setIsDisabled] = useState(false);
     
       // Destructure state
-      const { email, password } = formState;
+      const { username, password } = formState;
     
       useEffect(
         () => {
@@ -51,9 +55,9 @@ const SignUp = ({ register, isAuthenticated }) => {
       // Submit and Call Register Action
       const handleSubmit = (e) => {
         e.preventDefault();
-        setFormState({ email: "", password: "" });
+        setFormState({ username: "", password: "" });
         console.log(formState);
-        register({ email, password });
+        register({ username, password });
       };
     
       const handleChange = (e) => {
@@ -62,24 +66,28 @@ const SignUp = ({ register, isAuthenticated }) => {
         setFormState({ ...formState, [e.target.name]: e.target.value });
       };
     
+      if (isAuthenticated) {
+        return <Redirect to='/dashboard' />;
+      }
+    
 
     return(
         <div>
             <p>Here is the SignUp</p>
             <Link to='/signIn'>Sign In</Link>
         <Container>
-            <form onClick={handleSubmit} className='formContainer'>
+            <form onSubmit={handleSubmit} className='formContainer'>
         <label>
           <input
-            type='email'
-            name='email'
+            type='username'
+            name='username'
             onChange={handleChange}
-            data-cy='email'
-            value={email}
-            placeholder='Email'
+            data-cy='username'
+            value={username}
+            placeholder='username'
           />
-          {errors.email.length > 0 && (
-            <p style={{ color: "red" }}>{errors.email}</p>
+          {errors.username.length > 0 && (
+            <p style={{ color: "red" }}>{errors.username}</p>
           )}
         </label>
         <label>
@@ -110,7 +118,12 @@ const SignUp = ({ register, isAuthenticated }) => {
     )
 };
 
-export default SignUp;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { register })(SignUp);
+
 
 const Container = styled.div`
   width: 50rem;

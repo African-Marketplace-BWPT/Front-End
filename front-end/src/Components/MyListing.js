@@ -4,6 +4,7 @@ import Navbar from './Navbar';
 
 import styled from 'styled-components';
 import ItemCardMyListing from './ItemCardMyListing';
+import {Button} from 'react-bootstrap';
 
 
 const MyListing = () => {
@@ -12,7 +13,7 @@ const MyListing = () => {
             <h1>This is MyListing</h1>
             <Navbar/>
 
-            <CreateButton href='http://localhost:3000/createListing'>Create Listing</CreateButton>
+            <Button href='http://localhost:3000/createListing' className="text-center btn-lg .bg-warning" >Create Listing</Button>
             
             <ItemCardMyListing></ItemCardMyListing>
             

@@ -1,7 +1,7 @@
-import axios from 'asios';
+import axios from 'axios';
 
 import {
-    GET_LISTINGS,
+    GET_LISTING,
     LISTING_ERROR,
     ADD_LISTING,
     SET_LISTING,
@@ -15,7 +15,7 @@ export const getListings = () => async (dispatch) => {
             `https://murmuring-beyond-11554.herokuapp.com/api/v1/products`
         );
         dispatch({
-            type: GET_LISTINGS,
+            type: GET_LISTING,
             payload: res.data
         });
     } catch(err) {

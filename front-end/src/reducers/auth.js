@@ -6,6 +6,7 @@ import {
     AUTH_ERROR,
     LOGIN_SUCCESS,
     LOGIN_FAIL,
+    SET_USER,
     LOGOUT,
 }   from '../actions/types';
 
@@ -36,15 +37,25 @@ export default function (state = initialState, action) {
             };
         case LOGIN_SUCCESS:
             localStorage.setItem('token', payload.token);
+            localStorage.setItem('user', JSON.stringify(payload.user));
+            
             return{
                 ...state,
                 ...payload,
                 isAuthenticated: true,
-                loading: false
+                loading: false,
             };
         case REGISTER_FAIL:
         case AUTH_ERROR:
         case LOGIN_FAIL:
+        case SET_USER:
+            return {
+                ...state,
+                isAuthenticated: true,
+                loading: false,
+                user: payload,
+              };
+        
         case LOGOUT:
             localStorage.removeItem('token');
             return{

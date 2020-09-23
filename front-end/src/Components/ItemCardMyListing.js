@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {Link} from 'react-router-dom';
 
 
 import {
@@ -21,7 +21,7 @@ const ItemCardMyListing = () => {
                     <CardText>a brief description of the item.</CardText>
                     <Button>View</Button>
                     <Button>Delete</Button>
-                    <Button>Update</Button>
+                    <Button tag={Link} to='/editMyListing'>Update</Button>
                 </CardBody>
             </Card>
         </div>

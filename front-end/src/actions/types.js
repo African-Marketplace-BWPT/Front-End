@@ -13,3 +13,4 @@ export const SET_LISTING = "SET_LISTING";
 export const DELETE_LISTING = "DELETE_LISTING";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const DELETE_FROM_CART = "DELETE_FROM_CART";
+export const SET_USER = 'SET_USER';

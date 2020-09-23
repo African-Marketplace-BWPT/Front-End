@@ -54,11 +54,11 @@ const SignIn = ({ login, isAuthenticated }) =>{
           .catch((err) => setErrors({ ...errors, [e.target.name]: err.errors[0] }));
       };
     
-    
+    console.log(formState)
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        //setFormState({ username: "", password: "" });
+        setFormState({ username: "", password: "" });
         console.log(formState)
         login(username, password);
       };

@@ -1,18 +1,22 @@
 import React, {useEffect, useState} from 'react';
+import {connect} from 'react-redux'
 import {Link} from 'react-router-dom';
 import * as yup from 'yup';
 import styled from 'styled-components'
 
+import {Redirect} from 'react-router-dom';
+import {login} from '../actions/auth';
+
 const defaultErrorState = {
-    email: "",
+    username: "",
     password: "",
   };
   
 
   const schema = yup.object().shape({
-    email: yup
+    username: yup
       .string()
-      .email("This is not a valid Email.")
+      
       .required("Please enter you email."),
     password: yup
       .string()
@@ -24,11 +28,11 @@ const defaultErrorState = {
 const SignIn = ({ login, isAuthenticated }) =>{
 
     const [formState, setFormState] = useState({
-        email: "",
+        username: "",
         password: "",
       });
     
-      const { email, password } = formState;
+      const { username, password } = formState;
 
       const [errors, setErrors] = useState(defaultErrorState);
       const [isDisabled, setIsDisabled] = useState(false);
@@ -54,8 +58,9 @@ const SignIn = ({ login, isAuthenticated }) =>{
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setFormState({ email: "", password: "" });
-        login(email, password);
+        //setFormState({ username: "", password: "" });
+        console.log(formState)
+        login(username, password);
       };
 
     const handleChange = (e) => {
@@ -63,6 +68,11 @@ const SignIn = ({ login, isAuthenticated }) =>{
         validate(e);
         setFormState({ ...formState, [e.target.name]: e.target.value });
       };
+
+      if (isAuthenticated) {
+        return <Redirect to='/dashboard' />;
+      }
+    
     return(
         <div>
             <h1>SignIn</h1>
@@ -75,15 +85,15 @@ const SignIn = ({ login, isAuthenticated }) =>{
             <form onSubmit={handleSubmit} className='formContainer'>
         <label>
           <input
-            type='email'
-            name='email'
+            type='username'
+            name='username'
             onChange={handleChange}
-            data-cy='email'
-            value={email}
-            placeholder='Email'
+            data-cy='username'
+            value={username}
+            placeholder='username'
           />
-          {errors.email.length > 0 && (
-            <p style={{ color: "red" }}>{errors.email}</p>
+          {errors.username.length > 0 && (
+            <p style={{ color: "red" }}>{errors.username}</p>
           )}
         </label>
         <label>
@@ -117,7 +127,12 @@ const SignIn = ({ login, isAuthenticated }) =>{
     )
 };
 
-export default SignIn;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+
+export default connect(mapStateToProps, { login })(SignIn);
 
 
 const Container = styled.div`

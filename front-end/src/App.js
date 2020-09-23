@@ -36,7 +36,7 @@ function App() {
           <Route exact path='/' component={SignUp}/>
           <Route exact path='/signIn' component={SignIn}/>
           
-          <Route exact path='/dashboard' component={Dashboard}/>
+          <PrivateRoute exact path='/dashboard' component={Dashboard}/>
           <Route exact path='/editAddress' component={EditAddress}/>
           <Route exact path='/myListing' component={MyListing} itemCard={ItemCard}/>
           <Route exact path='/createListing' component={CreateListing}/>

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import {Link} from 'react-router-dom';
 
 const Navbar = () => {
     return(
@@ -9,11 +10,31 @@ const Navbar = () => {
             </Logo>
             <ButtonContainer>
                 
-                <Buttons href='http://localhost:3000/dashboard'>Dashboard</Buttons>
-                <Buttons href='http://localhost:3000/allListing'>All Listing</Buttons>
-                <Buttons href='http://localhost:3000/myListing'>My Listing</Buttons>
-                <Buttons href='http://localhost:3000/cart'>Cart</Buttons>
-                <Buttons href='http://localhost:3000/signIn'>Logout</Buttons>
+                <Link to='/dashboard' >
+                    <Buttons className='Buttons'>
+                        Dashboard
+                    </Buttons>
+                </Link>
+                <Link to='/allListing'>
+                    <Buttons className='Buttons'>
+                        All Listing
+                    </Buttons>
+                </Link>
+                <Link to='/myListing'>
+                    <Buttons className='Buttons'>
+                        My Listing
+                    </Buttons>
+                </Link>
+                <Link to='/cart'>
+                    <Buttons className='Buttons'>
+                        Cart
+                    </Buttons>
+                </Link>
+                <Link to='/signIn'>
+                    <Buttons className='Buttons'>
+                        Logout
+                    </Buttons>
+                </Link>
             </ButtonContainer>
             
             
@@ -47,7 +68,7 @@ const ButtonContainer = styled.div`
     font-family: Poppin;
     margin-bottom: 3px;
 `
-const Buttons = styled.a`
+const Buttons = styled.span`
     text-decoration: none;
     color: black;
     font-family: Poppin;

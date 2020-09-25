@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../Components/Navbar";
 import styled from "styled-components";
+import {connect} from 'react-redux';
 
 const MainContainer = styled.div`
   display: flex;
@@ -42,4 +43,7 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+export default connect(mapStateToProps)(Dashboard);

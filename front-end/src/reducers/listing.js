@@ -23,7 +23,12 @@ export default function (state = initialState, action) {
                 ...state,
                 listings: payload,
             };
-        case  ADD_LISTING:
+        
+        case ADD_LISTING:
+                return{
+                    ...state,
+                    listings: payload.data
+                }
         case EDIT_LISTING:
             return{
                 ...state,

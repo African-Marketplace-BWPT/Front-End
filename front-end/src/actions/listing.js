@@ -27,11 +27,12 @@ export const getListings = () => async (dispatch) => {
 };
 
 export const addListing = ( formData, history) => async ( dispatch) => {
+    console.log('here in addListing')
     try{
         const config = {
             headers: {
                 "Content-Type": 'application/json',
-                authorization: localStorage.getItem('token'),
+                "Authorization": localStorage.getItem('token'),
             },
         };
 
@@ -60,7 +61,7 @@ export const editListing = (formData, history) => async (dispatch) => {
         };
 
         const res = await axios.put(
-            `https://murmuring-beyond-11554.herokuapp.com/api/v1/products/:id`,
+            `https://murmuring-beyond-11554.herokuapp.com/api/v1/products/${formData.id}`,
             formData,
             config
         );
@@ -79,7 +80,7 @@ export const editListing = (formData, history) => async (dispatch) => {
 export const setListing = (id, history) => async (dispatch) => {
     try{
         const res = await axios.get(
-            `https://murmuring-beyond-11554.herokuapp.com/api/v1/products/:id`
+            `https://murmuring-beyond-11554.herokuapp.com/api/v1/products/${id}`
         );
 
         dispatch({
@@ -109,7 +110,7 @@ export const deleteListing = (id, history) => async (dispatch) => {
         };
 
         const res = await axios.delete(
-            `https://murmuring-beyond-11554.herokuapp.com/api/v1/products/:id`,
+            `https://murmuring-beyond-11554.herokuapp.com/api/v1/products/${id}`,
             config
         );
 

@@ -1,31 +1,60 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-
+import setAuthToken from '../utils/setAuthToken';
 import {
     Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle, Button} from 'reactstrap';
+import { connect } from 'react-redux';
 
+import {setListing, deleteListing, getListings} from '../actions/listing';
 
-const ItemCardMyListing = () => {
+    
+const ItemCardMyListing = (
+    {listings,
+    setListing,
+    deleteListing,
+    getListings}
+) => {
+
+    const { image, title, description, price, id } = listings;
+
+    const setList = (id) => {
+        setListing(id);
+    };
+
+    const handleDelete = (e) => {
+        e.preventDefault();
+        setAuthToken(localStorage.token);
+        deleteListing();
+        getListings();
+    }
 
 
     return(
         <div>
         
             <Card>
-                <CardImg top width='100%' src='' alt='Card image cap'/>
+                <CardImg top width='100%' src={image} alt='Card image cap'/>
                 <CardBody>
-                    <CardTitle>Temp Card</CardTitle>
-                    <CardSubtitle>Price:</CardSubtitle>
-                    <CardText>a brief description of the item.</CardText>
-                    <Button>View</Button>
-                    <Button>Delete</Button>
-                    <Button tag={Link} to='/editMyListing'>Update</Button>
+                    <CardTitle>{title}</CardTitle>
+                    <CardSubtitle>Price:{price}</CardSubtitle>
+                    <CardText>{description}</CardText>
+                    
+                    <Button
+                        onClick={handleDelete}>
+                        Delete
+                    </Button>
+                    <Button tag={Link} to='/editMyListing' onClick={() => setList(id)}>Update</Button>
                 </CardBody>
             </Card>
         </div>
     )
 };
 
-export default ItemCardMyListing;
+const mapStateToProps = (state) => ({
+    listings: state.listing.listings
+  });
+
+
+export default connect(null, {mapStateToProps, setListing, deleteListing, getListings})(ItemCardMyListing);

@@ -1,31 +1,33 @@
 import React, { useState } from "react";
+//import {Link} from 'react-router-dom';
 import { connect } from "react-redux";
 import { Button, Form, FormGroup, Label, Input, Col } from "reactstrap";
 import { addListing } from "../actions/listing";
 import Navbar from "./Navbar";
 
-const CreateListing = () => {
+const CreateListing = ({addListing, user, loading}) => {
+  console.log(loading)
+  console.log('here is userID', user)
+  const userid = user.id;
   const [formState, setFormState] = useState({
-    id: Date.now(),
+    
     title: "",
     description: "",
     price: "",
-    quantity: "",
-    photo: "",
+    //quantity: "",
+    image: "",
+    userId: userid
   });
 
-  const { title, description, price, quantity, photo } = formState;
+  const { title, description, price, 
+    //quantity, 
+    image } = formState;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormState({
-      title: "",
-      description: "",
-      price: "",
-      quantity: "",
-      photo: "",
-    });
-    addListing(title, description, price, quantity, photo);
+    setFormState(formState);
+    addListing(formState);
+    console.log(formState,'here is form state')
   };
 
   const handleChange = (e) => {
@@ -69,7 +71,7 @@ const CreateListing = () => {
             value={price}
           />
         </FormGroup>
-        <FormGroup>
+        {/* <FormGroup>
           <Label>Quantity:</Label>
           <Input
             type="text"
@@ -77,17 +79,19 @@ const CreateListing = () => {
             onChange={handleChange}
             value={quantity}
           />
-        </FormGroup>
+        </FormGroup> */}
         <FormGroup>
-          <Label>Photo:</Label>
+          <Label>image:</Label>
           <Input
             type="text"
-            name="photo"
+            name="image"
             onChange={handleChange}
-            value={photo}
+            value={image}
           />
         </FormGroup>
-        <Button className="btn-lg btn-dark btn-block">Create</Button>
+        <Button 
+        //tag={Link} to='/mylisting' 
+        className="btn-lg btn-dark btn-block">Create</Button>
       </Form>
     </div>
   );
@@ -95,6 +99,8 @@ const CreateListing = () => {
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
+  user: state.auth.user,
+  loading: state.auth.loading
 });
 
 export default connect(mapStateToProps, { addListing })(CreateListing);

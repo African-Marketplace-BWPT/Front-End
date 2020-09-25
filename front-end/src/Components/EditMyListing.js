@@ -1,37 +1,44 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { connect } from "react-redux";
 import { Button, Form, FormGroup, Label, Input, Col } from "reactstrap";
-import { addListing } from "../actions/listing";
+import { editListing } from "../actions/listing";
 import Navbar from "./Navbar";
+import setAuthToken from '../utils/setAuthToken';
 
-const EditMyListing = () => {
+const EditMyListing = ({editListing, editlisting}) => {
   const [formState, setFormState] = useState({
     id: Date.now(),
     title: "",
     description: "",
     price: "",
-    quantity: "",
-    photo: "",
+    //quantity: "",
+    image: "",
   });
 
-  const { title, description, price, quantity, photo } = formState;
+  const { title, description, price, 
+    //quantity, 
+    image } = formState;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormState({
-      title: "",
-      description: "",
-      price: "",
-      quantity: "",
-      photo: "",
-    });
-    addListing(title, description, price, quantity, photo);
+    setAuthToken(localStorage.token);
+    editListing(formState);
   };
 
   const handleChange = (e) => {
-    e.persist();
     setFormState({ ...formState, [e.target.name]: e.target.value });
   };
+
+  useEffect(() => {
+    console.log("Edit form", editlisting);
+    setFormState({
+      id: !editlisting.id ? "" : editlisting.id,
+      name: !editlisting.name ? "" : editlisting.name,
+      description: !editlisting.description ? "" : editlisting.description,
+      price: !editlisting.price ? "" : editlisting.price,
+    });
+  }, [editlisting]);
+
 
   return (
     <div>
@@ -69,7 +76,7 @@ const EditMyListing = () => {
             value={price}
           />
         </FormGroup>
-        <FormGroup>
+        {/* <FormGroup>
           <Label>Quantity:</Label>
           <Input
             type="text"
@@ -77,14 +84,14 @@ const EditMyListing = () => {
             onChange={handleChange}
             value={quantity}
           />
-        </FormGroup>
+        </FormGroup> */}
         <FormGroup>
-          <Label>Photo:</Label>
+          <Label>image:</Label>
           <Input
             type="text"
-            name="photo"
+            name="image"
             onChange={handleChange}
-            value={photo}
+            value={image}
           />
         </FormGroup>
         <Button className="btn-lg btn-dark btn-block">Create</Button>
@@ -94,7 +101,7 @@ const EditMyListing = () => {
 };
 
 const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
+  editlisting: state.listing.editlisting,
 });
 
-export default connect(mapStateToProps, { addListing })(EditMyListing);
+export default connect(mapStateToProps, { editListing })(EditMyListing);

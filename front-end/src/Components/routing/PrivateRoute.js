@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 
 const PrivateRoute = ({
     component: Component,
-    auth: {isAuthenticated},
+    auth: isAuthenticated,
     ...rest
 }) => (
     <Route
@@ -20,6 +20,19 @@ const PrivateRoute = ({
     />
 );
 
+// const PrivateRoute = ({ component: Component, ...rest }) => (
+//     <Route
+//       {...rest}
+//       render={props =>
+//         localStorage.getItem("token") ? (
+//           <Component {...props} />
+//         ) : (
+//           <Redirect to="/" />
+//         )
+//       }
+//     />
+//   );
+
 
 PrivateRoute.propTypes = {
     auth: PropTypes.object.isRequired,
@@ -27,6 +40,7 @@ PrivateRoute.propTypes = {
 
 const mapStateToProps = (state) => ({
     auth: state.auth,
+    isAuthenticated: state.auth.isAuthenticated,
 });
 
 export default connect (mapStateToProps)(PrivateRoute);

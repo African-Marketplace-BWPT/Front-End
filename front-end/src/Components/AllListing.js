@@ -1,9 +1,11 @@
 import React from 'react';
-
+import { connect } from "react-redux";
 import Navbar from '../Components/Navbar';
 import ItemCardAllListing from './ItemCardAllListing';
 
 import {Container} from 'reactstrap';
+import {getListings} from '../actions/listing';
+import {addToCart} from '../actions/cart';
 
 
 const AllListing = () => {
@@ -20,7 +22,15 @@ const AllListing = () => {
     )
 };
 
-export default AllListing;
+const mapStateToProps = (state) => ({
+    listings: state.listing.listings,
+    cart: state.cart.cart,
+  });
+  
+  export default connect(mapStateToProps, { getListings, addToCart })(
+    AllListing
+  );
+  
 
 
 

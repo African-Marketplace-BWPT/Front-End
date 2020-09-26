@@ -56,7 +56,7 @@ function App() {
             <PrivateRoute exact path='/editAddress' component={EditAddress}/>
             <PrivateRoute exact path='/myListing' component={MyListing} itemCard={ItemCard}/>
             <PrivateRoute exact path='/createListing' component={CreateListing}/>
-            <PrivateRoute exact path='/editMyListing' component={EditMyListing}/>
+            <PrivateRoute path='/editMyListing/:id' component={EditMyListing}/>
             <PrivateRoute exact path='/allListing' component={AllListing} itemCard={ItemCard}/>
             <PrivateRoute exact path='/itemCard' component={ItemCard}/>
             <PrivateRoute exact path='/cart' component={Cart}/>

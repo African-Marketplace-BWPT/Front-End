@@ -7,16 +7,18 @@ import {
     CardTitle, CardSubtitle, Button} from 'reactstrap';
 import { connect } from 'react-redux';
 
+
 import {setListing, deleteListing, getListings} from '../actions/listing';
 
     
 const ItemCardMyListing = (
+    
     {listings,
     setListing,
     deleteListing,
     getListings}
 ) => {
-
+    console.log('here is listing.id', listings.id);
     const { image, title, description, price, id } = listings;
 
     const setList = (id) => {
@@ -29,7 +31,7 @@ const ItemCardMyListing = (
         deleteListing(id);
         getListings(id);
     }
-
+    
 
     return(
         <div>
@@ -45,7 +47,7 @@ const ItemCardMyListing = (
                         onClick={handleDelete}>
                         Delete
                     </Button>
-                    <Button tag={Link} to='/editMyListing' onClick={() => setList(id)}>Update</Button>
+                    <Button tag={Link} to={`/editMyListing/${listings.id}`} onClick={() => setList(listings.id)}>Update</Button>
                 </CardBody>
             </Card>
         </div>

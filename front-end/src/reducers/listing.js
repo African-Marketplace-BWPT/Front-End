@@ -32,7 +32,7 @@ export default function (state = initialState, action) {
         case EDIT_LISTING:
             return{
                 ...state,
-                editlisting: [],
+                editlisting: [...state.listings, payload.data],
                 listings: [...state.listings, payload.data],
             };
         case DELETE_LISTING:

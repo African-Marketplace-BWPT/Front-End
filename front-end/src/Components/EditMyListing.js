@@ -4,16 +4,25 @@ import { Button, Form, FormGroup, Label, Input, Col } from "reactstrap";
 import { editListing } from "../actions/listing";
 import Navbar from "./Navbar";
 import setAuthToken from '../utils/setAuthToken';
+import { useParams } from "react-router-dom";
 
-const EditMyListing = ({editlisting, editListing}) => {
+const EditMyListing = ({editlisting, listing, listings, editListing, user, loading}) => {
+  console.log(loading)
+  console.log('here is listing.id inside editmylisting', listings)
+  const userid = user;
+  console.log(user)
   const [formState, setFormState] = useState({
-    id: Date.now(),
+    id: listing.data.id,
     title: "",
     description: "",
     price: "",
     //quantity: "",
     image: "",
+    userId: userid
   });
+
+  const { id } = useParams();
+  console.log('here is id', id)
 
   const { title, description, price, 
     //quantity, 
@@ -22,7 +31,7 @@ const EditMyListing = ({editlisting, editListing}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setAuthToken(localStorage.token);
-    editListing(formState);
+    editListing({id: parseInt(id), userId: user, title: formState.title, description: formState.description, price: formState.price, image: formState.image});
   };
 
   const handleChange = (e) => {
@@ -30,14 +39,15 @@ const EditMyListing = ({editlisting, editListing}) => {
   };
 
   useEffect(() => {
+    console.log(typeof editlisting)
     console.log("Edit form", editlisting);
     setFormState({
-      id: ! editlisting.id ? "" :  editlisting.id,
-      name: ! editlisting.name ? "" :  editlisting.name,
-      description: ! editlisting.description ? "" :  editlisting.description,
-      price: ! editlisting.price ? "" :  editlisting.price,
+      userId: ! listing.data.userId ? "" :  editlisting.id,
+      title: ! listing.data.title ? "" :  listing.data.title,
+      description: ! listing.data.description ? "" :  listing.data.description,
+      price: ! listing.data.price ? "" :  listing.data.price,
     });
-  }, [, editlisting]);
+  }, [ editlisting]);
 
 
   return (
@@ -94,14 +104,17 @@ const EditMyListing = ({editlisting, editListing}) => {
             value={image}
           />
         </FormGroup>
-        <Button className="btn-lg btn-dark btn-block">Create</Button>
+        <Button className="btn-lg btn-dark btn-block">Update</Button>
       </Form>
     </div>
   );
 };
 
 const mapStateToProps = (state) => ({
-   editlisting: state.listing. editlisting,
+  editlistings: state.listing.editlisting,
+  user: state.auth.user.id,
+  loading: state.auth.loading,
+  listing: state.listing.listings
 });
 
 export default connect(mapStateToProps, { editListing })(EditMyListing);

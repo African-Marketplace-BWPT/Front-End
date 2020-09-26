@@ -56,10 +56,10 @@ export const editListing = (formData, history) => async (dispatch) => {
         const config = {
             headers: {
                 'Content-Type': 'application/json',
-                authorization: localStorage.getItem('token'),
+                'authorization': localStorage.getItem('token'),
             },
         };
-
+        console.log('here is form Data from action ', formData)
         const res = await axios.put(
             `https://murmuring-beyond-11554.herokuapp.com/api/v1/products/${formData.id}`,
             formData,
@@ -90,7 +90,7 @@ export const setListing = (id, history) => async (dispatch) => {
         
         console.log('EditObject', res.data.item);
 
-        history.push(`editMyListing${id}`)
+        history.push(`EditMyListing${id}`)
     }   catch(err) {
         dispatch({
             type: LISTING_ERROR,

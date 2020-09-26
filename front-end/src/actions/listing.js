@@ -27,7 +27,7 @@ export const getListings = () => async (dispatch) => {
 };
 
 export const addListing = ( formData, history) => async ( dispatch) => {
-    console.log('here in addListing')
+    console.log('here in addListing', formData)
     try{
         const config = {
             headers: {
@@ -105,7 +105,7 @@ export const deleteListing = (id, history) => async (dispatch) => {
         const config = {
             headers: {
                 'Content-Type': 'application/json',
-                authorization: localStorage.getItem('token')
+                'authorization': localStorage.getItem('token')
             },
         };
 

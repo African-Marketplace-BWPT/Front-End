@@ -27,7 +27,7 @@ export default function (state = initialState, action) {
         case ADD_LISTING:
                 return{
                     ...state,
-                    listings: payload.data
+                    listings: [...state.listings, payload.data]
                 }
         case EDIT_LISTING:
             return{

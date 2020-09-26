@@ -8,9 +8,9 @@ import Navbar from "./Navbar";
 const CreateListing = ({addListing, user, loading}) => {
   console.log(loading)
   console.log('here is userID', user)
-  const userid = user.id;
+  const userid = user;
   const [formState, setFormState] = useState({
-    
+    id: Date.now(),
     title: "",
     description: "",
     price: "",
@@ -89,9 +89,9 @@ const CreateListing = ({addListing, user, loading}) => {
             value={image}
           />
         </FormGroup>
-        <Button 
+        <button 
         //tag={Link} to='/mylisting' 
-        className="btn-lg btn-dark btn-block">Create</Button>
+        className="btn-lg btn-dark btn-block">Create</button>
       </Form>
     </div>
   );

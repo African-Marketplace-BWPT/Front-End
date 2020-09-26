@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { connect } from "react-redux";
 import Navbar from './Navbar';
 import {Link} from 'react-router-dom';
@@ -6,11 +6,16 @@ import {Link} from 'react-router-dom';
 //import styled from 'styled-components';
 import ItemCardMyListing from './ItemCardMyListing';
 //import {Button} from 'react-bootstrap';
-import {getListings} from '../actions/listing';
+import {getListings, setListing} from '../actions/listing';
 
 
 
-const MyListing = ({getListings, listings, user}) => {
+const MyListing = ({getListings, listings, setListing, user}) => {
+
+  useEffect(() => {
+    getListings();
+  }, []);
+
 
     return(
         <div>
@@ -22,9 +27,12 @@ const MyListing = ({getListings, listings, user}) => {
             {listings.length === 0 ? (
             <div>Please Add Producuts</div>
           ) : (
-            listings.map(
+
+            console.log( listings.data),
+            listings.data.map(
+              
               (listing) =>
-                listing.user_id === user.id && (
+                listing.userId === user.id && (
                   <ItemCardMyListing
                     key={listing.id}
                     listings={listing}
@@ -43,7 +51,7 @@ const mapStateToProps = (state) => ({
     user: state.auth.user,
   });
   
-  export default connect(mapStateToProps, { getListings })(MyListing);
+  export default connect(mapStateToProps, {setListing, getListings })(MyListing);
 
 // const Container = styled.div`
 //     margin: 10px 10% 10px 10%;

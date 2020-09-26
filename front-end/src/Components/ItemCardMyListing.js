@@ -26,8 +26,8 @@ const ItemCardMyListing = (
     const handleDelete = (e) => {
         e.preventDefault();
         setAuthToken(localStorage.token);
-        deleteListing();
-        getListings();
+        deleteListing(id);
+        getListings(id);
     }
 
 

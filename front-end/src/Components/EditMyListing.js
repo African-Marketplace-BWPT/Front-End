@@ -5,7 +5,7 @@ import { editListing } from "../actions/listing";
 import Navbar from "./Navbar";
 import setAuthToken from '../utils/setAuthToken';
 
-const EditMyListing = ({editListing, editlisting}) => {
+const EditMyListing = ({editlisting, editListing}) => {
   const [formState, setFormState] = useState({
     id: Date.now(),
     title: "",
@@ -32,12 +32,12 @@ const EditMyListing = ({editListing, editlisting}) => {
   useEffect(() => {
     console.log("Edit form", editlisting);
     setFormState({
-      id: !editlisting.id ? "" : editlisting.id,
-      name: !editlisting.name ? "" : editlisting.name,
-      description: !editlisting.description ? "" : editlisting.description,
-      price: !editlisting.price ? "" : editlisting.price,
+      id: ! editlisting.id ? "" :  editlisting.id,
+      name: ! editlisting.name ? "" :  editlisting.name,
+      description: ! editlisting.description ? "" :  editlisting.description,
+      price: ! editlisting.price ? "" :  editlisting.price,
     });
-  }, [editlisting]);
+  }, [, editlisting]);
 
 
   return (
@@ -101,7 +101,7 @@ const EditMyListing = ({editListing, editlisting}) => {
 };
 
 const mapStateToProps = (state) => ({
-  editlisting: state.listing.editlisting,
+   editlisting: state.listing. editlisting,
 });
 
 export default connect(mapStateToProps, { editListing })(EditMyListing);
